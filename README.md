@@ -25,8 +25,33 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+1. Write controllers with methods. WebRouter controllers responds to json, text
 
+```ruby
+class TestsController < WebRouter::Controller
+  def show
+    response(:json, params)
+  end
+
+  def test
+    response(:text, "Required method #{request.request_method}")
+  end
+end
+```
+
+2. Create new application and configure it with block of routes
+Available HTTP methods: get, post, put, delete
+You can configure routs using controller`s methods or Rack Applications
+
+```ruby
+WebRouter::Router.new.configure do
+  get '/test', ->(env) { [200, {}, ['get test']] }
+  post '/test', ->(env) { [200, {}, ['post test']] }
+  get '/comments/:name/:other_one', 'tests#show'
+  get '/testing', 'tests#test'
+end
+
+```
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.

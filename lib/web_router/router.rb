@@ -15,13 +15,10 @@ private
     @routes = []
   end
 
-  def get(path, rack_app)
-    match('GET', path, rack_app)
-  end
-
-  def post(path, rack_app)
-    match('POST', path, rack_app)
-  end
+  def get(path, rack_app) match('GET', path, rack_app) end
+  def post(path, rack_app) match('POST', path, rack_app) end
+  def put(path, rack_app) match('PUT', path, rack_app) end
+  def delete(path, rack_app) match('DELETE', path, rack_app) end
 
   def match(http_method, path, rack_app)
     rack_app = get_controller_action(rack_app) if rack_app.is_a? String
