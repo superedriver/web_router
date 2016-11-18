@@ -1,7 +1,7 @@
 # coding: utf-8
 lib = File.expand_path('../web_router', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'web_router/version'
+require_relative 'lib/web_router/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "web_router"
