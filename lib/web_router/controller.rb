@@ -33,4 +33,9 @@ private
     @response_headers.merge!('Content-Type' => RESPONSE_TYPES[type][0] )
     @response_body = RESPONSE_TYPES[type][1].call(content)
   end
+
+  def erb(template)
+    path = File.join(File.expand_path('.'), template.to_s)
+    ERB.new(File.read(path)).result(binding)
+  end
 end

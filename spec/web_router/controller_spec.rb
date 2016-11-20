@@ -18,6 +18,11 @@ RSpec.describe WebRouter::Controller do
       def html_action
         response(:html, '<h1>test</h1>')
       end
+
+      def html_with_erb_action
+        @message = params['message']
+        response(:html, erb(:'spec/fixtures/views/index.html.erb'))
+      end
     end
   end
 
@@ -83,8 +88,22 @@ RSpec.describe WebRouter::Controller do
         expect(subject)
           .to eq([
             200,
+            {"Content-Type"=>"text/html"},
+            ["<h1>test</h1>"]
+          ])
+      end
+    end
+
+    context 'when html response with erb' do
+      let(:action) { :html_with_erb_action }
+      let(:router_params) { { 'router.params' => { 'message' => 'Hello world!' } } }
+
+      it 'successfully responds' do
+        expect(subject)
+          .to eq([
+            200,
             { 'Content-Type' => 'text/html' },
-            ['<h1>test</h1>']
+            ['<h1>Hello world!</h1>']
           ])
       end
     end

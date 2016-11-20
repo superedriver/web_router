@@ -25,7 +25,9 @@ Or install it yourself as:
 
 ## Usage
 
-* Write controllers with methods. WebRouter controllers responds to json, text, html
+* Write controllers with methods. WebRouter controllers responds to json, text, html.
+You can use simple HTML or ERB-templates.
+For ERB-templates use erb() method with Symbol path of template.
 
 ```ruby
 class TestsController < WebRouter::Controller
@@ -36,6 +38,15 @@ class TestsController < WebRouter::Controller
   def test
     response(:text, "Required method #{request.request_method}")
   end
+  
+  def html_action
+    response(:html, '<h1>test</h1>')
+  end
+
+  def html_action_with_erb
+    @message = params['message']
+    response(:html, erb(:'views/index.html.erb'))
+ end
 end
 ```
 
