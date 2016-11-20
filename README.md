@@ -25,7 +25,7 @@ Or install it yourself as:
 
 ## Usage
 
-1. Write controllers with methods. WebRouter controllers responds to json, text
+* Write controllers with methods. WebRouter controllers responds to json, text, html
 
 ```ruby
 class TestsController < WebRouter::Controller
@@ -39,8 +39,9 @@ class TestsController < WebRouter::Controller
 end
 ```
 
-2. Create new application and configure it with block of routes
-Available HTTP methods: get, post, put, delete
+* Create new application and configure it with block of routes
+Available HTTP methods: get, post, put, delete. 
+
 You can configure routs using controller`s methods or Rack Applications
 
 ```ruby

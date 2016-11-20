@@ -2,6 +2,7 @@ class WebRouter::Controller
   RESPONSE_TYPES = {
     text: ['text/plain', -> (c) { c.to_s }],
     json: ['application/json', -> (c) { Oj.dump(c) }],
+    html: ['text/html', ->(c) { c }]
   }
 
   def call(env)

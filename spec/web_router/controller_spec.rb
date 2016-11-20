@@ -14,6 +14,10 @@ RSpec.describe WebRouter::Controller do
       def json_action
         response(:json, params)
       end
+
+      def html_action
+        response(:html, '<h1>test</h1>')
+      end
     end
   end
 
@@ -69,6 +73,19 @@ RSpec.describe WebRouter::Controller do
       it 'successfully responds' do
         expect(subject)
           .to eq([200, {"Content-Type"=>"application/json"}, ["{\"a\":\"b\",\"e\":\"r\"}"]])
+      end
+    end
+
+    context 'when html response' do
+      let(:action) { :html_action }
+
+      it 'successfully responds' do
+        expect(subject)
+          .to eq([
+            200,
+            { 'Content-Type' => 'text/html' },
+            ['<h1>test</h1>']
+          ])
       end
     end
 
