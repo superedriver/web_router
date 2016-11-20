@@ -1,4 +1,3 @@
-require 'pry'
 require 'rack'
 require 'oj'
 require 'web_router/version'
