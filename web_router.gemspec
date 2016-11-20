@@ -28,7 +28,7 @@ Gem::Specification.new do |spec|
   # end
   spec.bindir        = "exe"
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
-  spec.require_paths = ["lib"]
+  spec.require_paths = ["lib/web_router.rb", "lib/web_router/controller.rb", "lib/web_router/router.rb", "lib/web_router/version.rb"]
 
   spec.add_development_dependency "bundler", "~> 1.13"
   spec.add_development_dependency "rake", "~> 10.0"
